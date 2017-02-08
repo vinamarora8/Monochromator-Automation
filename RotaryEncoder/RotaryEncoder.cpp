@@ -26,9 +26,11 @@ int RotaryEncoder::getPosition(const int *pins) {
 	int pos = 0;
 	
 	// Write bits into it - in gray code though
-	for (int i=0; i<8; i++) 
+	for (int i=0; i<8; i++) {
+		Serial.print(digitalRead(pins[i]));
 		bitWrite(pos, i, digitalRead(pins[i]));
-	
+	}
+	Serial.println();
 	// Convert the Gray value of position to Decimal
 	grayToDecimal(pos);
 	return pos;

@@ -52,6 +52,9 @@ void loop() {
 }
 
 void initialize() {
+  // For testing purposes:
+  EEPROM.write(0, 0);
+
   // Read initial rotary encoder value (stored in EEPROM address 0)
   int init_val = EEPROM.read(0);
 
