@@ -24,6 +24,7 @@ StepperControl::StepperControl(const int* stepper_pins) {
 
 void StepperControl::set_step_delay(int delay) {
 	step_delay = delay;
+	Serial.println("Step Delay changed");
 }
 
 void StepperControl::step_up() {
@@ -34,7 +35,7 @@ void StepperControl::step_up() {
 			digitalWrite(pins[3], LOW);
 			digitalWrite(pins[0], HIGH);
 			delay(step_delay);
-			digitalWrite(pins[0], LOW);
+			//digitalWrite(pins[0], LOW);
 			stage = 1;
 			break;
 
@@ -42,21 +43,21 @@ void StepperControl::step_up() {
 			digitalWrite(pins[0], LOW);
 			digitalWrite(pins[1], HIGH);
 			delay(step_delay);
-			digitalWrite(pins[1], LOW);
+			//digitalWrite(pins[1], LOW);
 			stage = 2;
 			break;
 		case 2:
 			digitalWrite(pins[1], LOW);
 			digitalWrite(pins[2], HIGH);
 			delay(step_delay);
-			digitalWrite(pins[2], LOW);
+			//digitalWrite(pins[2], LOW);
 			stage = 3;
 			break;
 		case 3:
 			digitalWrite(pins[2], LOW);
 			digitalWrite(pins[3], HIGH);
 			delay(step_delay);
-			digitalWrite(pins[3], LOW);
+			//digitalWrite(pins[3], LOW);
 			stage = 0;
 			break;
 	}
@@ -113,4 +114,7 @@ void StepperControl::step(int steps) {
 			steps++;
 		}
 	}
+
+	for (int i=0; i<4; i++)
+		digitalWrite(pins[i], LOW);
 }
