@@ -23,8 +23,8 @@ void setup() {
 	// Stepper Motor already set up by the library
 	stepctrl.set_step_delay(100);
 
-	// Print "READY"
-	Serial.println("READY");
+	// Print 1 to indicate "READY"
+	Serial.println(1);
 }
 
 void loop() {
@@ -46,6 +46,8 @@ void loop() {
 		// Otherwise take as many steps as the input
 		else {
 			stepctrl.step(steps);
+			// Print 11 to indicate steps were taken
+			Serial.println(11);
 		}
 	}
 }
