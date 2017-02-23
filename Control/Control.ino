@@ -6,11 +6,15 @@
 #include <StepperControl.h>
 #include <EEPROM.h>
 
+// Pins for Rotary Encoder and Stepper Motor
 const int RotEnc[] = {2,3,4,5,6,7,8,9};
 const int StepMot[] = {10,11,12,13};
+
+// Libraries for the above
 RotaryEncoder rotlib;
 StepperControl stepctrl(StepMot);
 
+// Minimum wavelength of my Monochromator is 300nm 
 int current_wavelength = 300;
 
 void setup() {
@@ -53,7 +57,7 @@ void loop() {
 void initialize() {
   Serial.println("Initializing");
   // For testing purposes:
-  EEPROM.write(0, 10);
+  //EEPROM.write(0, 10);
   
   // Read initial rotary encoder value (stored in EEPROM address 0)
   int init_val = EEPROM.read(0);
@@ -78,16 +82,9 @@ void initialize() {
 
   Serial.print("Steps required: ");
   Serial.println(steps);
-  
-  //
+
   // Travel that many steps
   stepctrl.step(steps);
-
-  // Veryify
-  // If not reached, recall this function
-  current_val = rotlib.getPosition(RotEnc);
-//  if (init_val != current_val)
- //   initialize();
 
   // Testing helper
   Serial.println(1);
