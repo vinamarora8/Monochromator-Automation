@@ -1,6 +1,6 @@
 #include <StepperControl.h>
 #include <RotaryEncoder.h>
-#include <EPROM.h>
+#include <EEPROM.h>
 
 // Pins for Rotary Encoder and Stepper Motor
 const int RotEnc[] = {2,3,4,5,6,7,8,9};
@@ -33,6 +33,9 @@ void loop() {
 	if (Serial.available() > 0) {
 		int steps = Serial.parseInt();
 
+    if (steps == 250)
+      Serial.println(1);
+    
 		// If steps == 0, save the RotEnc state
 		// Write only if the state is different than the already stored one
 		// to increase EEPROM life
@@ -41,13 +44,16 @@ void loop() {
 			if (current_val != EEPROM.read(0))
 				EEPROM.write(0, current_val);
 			Serial.println("DONE");
+      Serial.println(current_val);
+      Serial.print("New init-val ");
+      Serial.println(EEPROM.read(0));
 		}
 
 		// Otherwise take as many steps as the input
-		else {
+		else if (steps <= 200) {
 			stepctrl.step(steps);
 			// Print 11 to indicate steps were taken
-			Serial.println(11);
+			Serial.println(1);
 		}
 	}
 }
