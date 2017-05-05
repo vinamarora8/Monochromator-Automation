@@ -27,10 +27,8 @@ void setup() {
     digitalWrite(RotEnc[i], HIGH);
   }
 
-  // Set up stepper motor
-  // 
+  // Set up stepper motor 
   stepctrl.set_step_delay(100);
-  //
 
   // Initialize the motor
   initialize();
@@ -38,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-  // main code
+  // Main code
   // Read serial input
   if(Serial.available() > 0) {
     int inp = Serial.parseInt();
@@ -55,9 +53,9 @@ void loop() {
 }
 
 void initialize() {
-  Serial.println("Initializing");
+  Serial.println("\nInitializing");
   // For testing purposes:
-  //EEPROM.write(0, 10);
+  //EEPROM.write(0, 0);
   
   // Read initial rotary encoder value (stored in EEPROM address 0)
   int init_val = EEPROM.read(0);
@@ -76,9 +74,10 @@ void initialize() {
   // Calculate number of steps it takes to reach init val
   // Resolutions: Stepper motor - 200 steps per cycle
   //              Rotary Encoder- 256 steps per cycle
-  int steps = (init_val-current_val);
-  steps *= 200;
-  steps /= 256;
+  float steps_temp = (init_val - current_val);
+  steps_temp /= 32;
+  steps_temp *= 25;
+  int steps = (int) steps_temp;
 
   Serial.print("Steps required: ");
   Serial.println(steps);
@@ -91,6 +90,7 @@ void initialize() {
 }
 
 void RTControl(int wavelength) {
+  Serial.println("\nReal Time Control");
   // Calculate number of steps to move
   // Resolution of Stepper motor : 200 steps per cycle
   int steps = (wavelength - current_wavelength);
@@ -105,8 +105,9 @@ void RTControl(int wavelength) {
   Serial.print("Steps required: ");
   Serial.println(steps);
   // Update current wavelength
-  current_wavelength = wavelength;
-
+  if (steps != 0)
+    current_wavelength = wavelength;
+    
   Serial.print("New wavelength: ");
   Serial.println(current_wavelength);
   // Testing helper
