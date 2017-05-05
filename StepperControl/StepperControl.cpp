@@ -24,7 +24,7 @@ StepperControl::StepperControl(const int* stepper_pins) {
 
 void StepperControl::set_step_delay(int delay) {
 	step_delay = delay;
-	Serial.println("Step Delay changed");
+	return;
 }
 
 void StepperControl::step_up() {
