@@ -84,7 +84,7 @@ void initialize() {
 
   // Travel that many steps
   stepctrl.step(steps);
-
+  current_wavelength = 300;
   // Testing helper
   Serial.println(1);
 }

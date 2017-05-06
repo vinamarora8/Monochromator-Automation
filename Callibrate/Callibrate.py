@@ -5,11 +5,14 @@
 # 2) Arduino
 # 3) Serial Com
 import serial
+from spectr import *
+from os import system
 
 # Get arduino location from the user
 _arduino_location = raw_input("Enter the location of your Arduino (/dev/ttyACM0): ") or "/dev/ttyACM0"
 
-# TODO: Compile and Upload to Arduino
+# TODO: test this part: Compile and Upload to Arduino
+system("arduino --upload Callibrate.ino --port " + _arduino_location)
 
 # Connect to the Arduino using serial
 print "Connecting to Arduino... "
@@ -34,8 +37,8 @@ print "Connected\n"
 print "Starting Callibration...\n"
 
 while True:
-#	current_wav = _spectromter.getWavelength()
-	current_wav = int(raw_input("What is the spectrometer showing? "))
+	current_wav = get_avg_strongest_wavelength_vis(10)
+	#current_wav = int(raw_input("What is the spectrometer showing? "))
 	print "Monochromator currently at " + str(current_wav)
 	print "Changing... "
 	steps = (300.0 - current_wav)*2/7
