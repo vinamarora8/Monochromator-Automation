@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 import seabreeze.spectrometers as sb
 
 ###				Connection Handling				###
@@ -9,9 +10,9 @@ devices = sb.list_devices()
 ## Handler
 ## If no spectrometer is found
 while len(devices) == 0 :
-	inp = raw_input("No spectrometer detected. Try again? (Y/N) : "
+	inp = raw_input("No spectrometer detected. Try again? (Y/N) : ")
 
-	if a == "N" or a == "n" : 
+	if (inp == "N" or inp == "n"): 
 		exit()
 	else:
 		devices = sb.list_devices()
