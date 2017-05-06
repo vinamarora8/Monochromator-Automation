@@ -1,5 +1,14 @@
 # Monochromator-Automation
 
+### TODO
+- [x] StepperMotor library
+- [x] RotaryEncoder library
+- [x] Spectrometer
+- [x] Control
+- [ ] Callibrate
+- [ ] Final Integration
+- [ ] Installation
+
 This repository includes the code to automate Monochromator (a mechanical machine) using an Arduino, a Stepper motor, a Rotary encode and a Spectrometer.
 The code is divided into 2 parts:
 - Control : The program which will control an already caliberated Monochromator
