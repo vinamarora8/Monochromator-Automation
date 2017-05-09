@@ -54,6 +54,7 @@ void loop() {
 
 void initialize() {
   Serial.println("\nInitializing");
+  
   // For testing purposes:
   //EEPROM.write(0, 0);
   
@@ -78,6 +79,11 @@ void initialize() {
   steps_temp /= 32;
   steps_temp *= 25;
   int steps = (int) steps_temp;
+
+  // Angle Control
+  // TODO testing
+  if (steps > 0) 
+  	steps -= 200;
 
   Serial.print("Steps required: ");
   Serial.println(steps);
