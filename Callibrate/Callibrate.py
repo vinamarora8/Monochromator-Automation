@@ -1,16 +1,14 @@
 #!/usr/bin/python2.7
 
-# import libraries for : 
-# 1) Spectrometer
-# 2) Arduino
-# 3) Serial Com
 import serial
 from spectr import *
 from os import system
+import sys
 
 # make sure the user enters arduino's location as a cl argument
-if (sys.argv != 2):
-	print("usage: " + sys.argv[0] + " <location of arduino>")
+if (len(sys.argv) != 2):
+	sys.stderr.write("usage: " + sys.argv[0] + " <location of arduino>")
+	exit()
 
 _arduino_location = sys.argv[1]
 
@@ -59,5 +57,5 @@ while True:
 	else:
 		_arduino.write(str(0))
 		print "System callibrated"
-		print "Exiting..."
+		print "Exiting Callibrate..."
 		exit()
