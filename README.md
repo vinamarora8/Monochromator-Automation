@@ -7,7 +7,7 @@
 - [x] Control
 - [x] Callibrate
 - [ ] Improve logic - Include angle restriction
-- [ ] Final Integration (Single program for Call and Cont)
+- [x] Final Integration (Single program for Call and Cont)
 - [ ] Installation File
 
 This repository includes the code to automate Monochromator (a mechanical machine) using an Arduino, a Stepper motor, a Rotary encode and a Spectrometer.
