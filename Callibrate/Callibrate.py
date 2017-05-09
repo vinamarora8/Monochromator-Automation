@@ -8,8 +8,11 @@ import serial
 from spectr import *
 from os import system
 
-# Get arduino location from the user
-_arduino_location = raw_input("Enter the location of your Arduino (/dev/ttyACM0): ") or "/dev/ttyACM0"
+# make sure the user enters arduino's location as a cl argument
+if (sys.argv != 2):
+	print("usage: " + sys.argv[0] + " <location of arduino>")
+
+_arduino_location = sys.argv[1]
 
 # TODO: test this part: Compile and Upload to Arduino
 system("arduino --upload Callibrate.ino --port " + _arduino_location)
