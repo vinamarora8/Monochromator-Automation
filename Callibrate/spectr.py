@@ -9,7 +9,7 @@ devices = sb.list_devices()
 ## Handler
 ## If no spectrometer is found
 while len(devices) == 0 :
-	inp = raw_input("No spectrometer detected. Try again? (Y/N) : "
+	inp = raw_input("No spectrometer detected. Try again? (Y/N) : ")
 
 	if a == "N" or a == "n" : 
 		exit()
