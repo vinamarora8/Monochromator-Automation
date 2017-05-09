@@ -6,6 +6,7 @@
 - [x] Spectrometer
 - [x] Control
 - [x] Callibrate
+- [ ] Improve logic - Include angle restriction
 - [ ] Final Integration (Single program for Call and Cont)
 - [ ] Installation File
 
