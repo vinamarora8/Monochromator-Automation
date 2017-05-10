@@ -1,7 +1,7 @@
 #!/usr/bin/python2.7
 
 import serial
-from spectr import *
+from spectrometer import *
 from os import system
 import sys
 
@@ -38,7 +38,7 @@ print "Connected\n"
 print "Starting Callibration...\n"
 
 while True:
-	current_wav = get_avg_strongest_wavelength_vis(10)
+	current_wav = max_wavelength()
 	#current_wav = int(raw_input("What is the spectrometer showing? "))
 	print "Monochromator currently at " + str(current_wav)
 	print "Changing... "
@@ -46,7 +46,7 @@ while True:
 	steps = int(round(steps))
 
 	if (steps != 0):
-		_arduino.write(str(steps))
+		_arduino. get_avg_strongest_wavelength_vis10 get_avg_strongest_wavelength_vis10write(str(steps))
 		
 		# Wait for the steps to be made (11)
 		done = False
